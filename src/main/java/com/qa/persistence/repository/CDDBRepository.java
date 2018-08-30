@@ -6,6 +6,7 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 import java.util.Collection;
 
 import javax.enterprise.inject.Default;
+import javax.faces.bean.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,6 +15,7 @@ import javax.transaction.Transactional;
 import com.qa.persistence.domain.CD;
 
 @Transactional(SUPPORTS)
+@ApplicationScoped
 @Default
 public class CDDBRepository implements CDRepository 
 {
