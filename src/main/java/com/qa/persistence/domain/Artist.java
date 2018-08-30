@@ -8,14 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Artist 
 {
-	public Long getParentID() {
-		return parentID;
-	}
-
-	public void setParentID(Long parentID) {
-		this.parentID = parentID;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -30,5 +22,5 @@ public class Artist
 	@Id
 	private Long id;	
 	private String name;
-	private Long parentID;
+
 }

@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,8 @@ public class CD
 	
 	@OneToMany(
 	        cascade = CascadeType.ALL, 
-	        orphanRemoval = true
+	        orphanRemoval = true,
+	        fetch = FetchType.EAGER
 	    )
     private Collection<Artist> artists;
 	
@@ -48,5 +50,11 @@ public class CD
 
 	public void setArtists(Collection<Artist> artists) {
 		this.artists = artists;
+	}
+	
+	public String toString()
+	{
+		String str = id + ", " + title + ", " + artists.toString();
+		return str;
 	}
 }

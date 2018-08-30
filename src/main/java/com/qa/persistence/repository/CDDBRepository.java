@@ -12,6 +12,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
+
+import com.qa.business.CDService;
 import com.qa.persistence.domain.CD;
 
 @Transactional(SUPPORTS)
@@ -19,6 +22,8 @@ import com.qa.persistence.domain.CD;
 @Default
 public class CDDBRepository implements CDRepository 
 {
+	private static final Logger LOGGER = Logger.getLogger(CDDBRepository.class);
+
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
 
@@ -26,13 +31,16 @@ public class CDDBRepository implements CDRepository
 	
 	public Collection<CD> getAllCDs() 
 	{
+		LOGGER.info("In CDServiceImpl getAllCDs ");
 		Query query = manager.createQuery("Select a FROM CD a");
+		LOGGER.info(query.toString());
 		return (Collection<CD>) query.getResultList();
 	}
 
 	@Transactional(REQUIRED)
 	public String createCD(CD cd)
 	{
+		LOGGER.info(cd.toString());
 		manager.persist(cd);
 		return "{\"message\": \"CD has been sucessfully added\"}";
 	}
